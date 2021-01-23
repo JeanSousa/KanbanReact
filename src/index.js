@@ -1,17 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
 
+import App from "./App";
+
+
+//index js starta a aplicacao onde a unica pagina html carregada é o index.html
+const rootElement = document.getElementById("root");
+//função react dom recebe dois parametros, o primeiro é um componente react e o segundo é 
+//um elemento onde vai ser montado o componente react
+//A FUNÇÃO RENDER DA BIBLIOTECA REACT DOM ESTÁ REINDERIZANDO O COMPONENTE APP DENTRO DA DIV ROOT
+//(rootElement)
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+      <App />,
+  rootElement
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
