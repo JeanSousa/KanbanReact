@@ -50,6 +50,14 @@ export default function App() { //o retorno tem que ser apenas um nó html por e
   }
 
 
+  const deleteTask = (id) => {
+    setTasks((existingTasks) => {
+       //vai retortar o array das tasks existentes
+       //filtrando todas as tasks menos a task que passei o id na funcao delete task
+       return existingTasks.filter(task => task.id !== id);
+    })
+  }
+
 
   return (
     //jsx é a sintaxe java script com o xml
@@ -63,7 +71,8 @@ export default function App() { //o retorno tem que ser apenas um nó html por e
        onAddTask={addTask}
        taskState="Pendente"
        tasks={tasks.filter( t => t.state === "Pendente")} 
-       onTaskUpdate={updateTask} 
+       onTaskUpdate={updateTask}
+       onDeleteTask={deleteTask} 
        />
        {/* O estado do componente é independente em cada instancia */}
        <TaskList  
@@ -71,14 +80,16 @@ export default function App() { //o retorno tem que ser apenas um nó html por e
        onAddTask={addTask}
        taskState="Fazendo"
        tasks={tasks.filter( t => t.state === "Fazendo")} 
-       onTaskUpdate={updateTask} 
+       onTaskUpdate={updateTask}
+       onDeleteTask={deleteTask} 
        />
         <TaskList  
        title="Completa"
        onAddTask={addTask}
        taskState="Completa"
        tasks={tasks.filter( t => t.state === "Completa")} 
-       onTaskUpdate={updateTask} 
+       onTaskUpdate={updateTask}
+       onDeleteTask={deleteTask} 
        />
      
       </div>

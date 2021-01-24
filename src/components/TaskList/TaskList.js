@@ -2,6 +2,9 @@ import React from "react";
 
 import './tasklist.css';
 
+//importando imagens 
+import plusIcon from '../../img/plus-icon.svg'
+
 //prop types é para tipar as minhas props dos componentes
 // ou seja colocar o tipo que uma prop tem que ser
 import PropTypes from 'prop-types';
@@ -22,7 +25,7 @@ import TaskItem from '../TaskItem/TaskItem';
 
 //ou possso passar a props quebrada com o titulo do parametro, ou seja passo a variavel
 //que desejo receber diretamente
-export default function TaskList({ title, taskState, onAddTask, tasks, onTaskUpdate }) {
+export default function TaskList({ title, taskState, onAddTask, tasks, onTaskUpdate, onDeleteTask }) {
     //passo o task state para criar de acordo com estado
     const addTask = () => {
       onAddTask("Nova Tarefa", taskState);
@@ -42,9 +45,16 @@ export default function TaskList({ title, taskState, onAddTask, tasks, onTaskUpd
                 title={task.title} 
                 taskState={task.state}
                 onTaskUpdate={onTaskUpdate}
+                onDeleteTask={onDeleteTask}
                 />
              })}
-             <button onClick={addTask}>Adicionar Tarefa</button>
+             {/* reinderizacao condicional 
+             se tasks length == 0 entao ele executa a segunda parte */}
+             { tasks.length === 0 && <div className="empty-list">Lista Vazia</div> }
+             <button onClick={addTask} className="btn">
+               <img src={plusIcon} alt="plus"/>
+               Adicionar Tarefa
+              </button>
            </div>
        </div>
     );
